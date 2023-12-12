@@ -24,24 +24,24 @@ const Nav = ({exibeNavbar, setExibeNavbar}) => {
             </Link>
 
             <div className="navbar__items-box">
-                <Link to="/" className='navbar__item'>Home</Link>
+                <Link to="/" className='navbar__item' onClick={() => {setExibeNavbar(false)}}>Home</Link>
 
                 {userData.nome && userData.role === "Administrador" 
                 ?
                 (
                     <>
-                        <Link  to="/tipo-eventos" className='navbar__item'>
+                        <Link  to="/tipo-eventos" className='navbar__item' onClick={() => {setExibeNavbar(false)}}>
                             Tipos de Evento
                         </Link>
 
-                        <Link  to="/eventos" className='navbar__item'>
+                        <Link  to="/eventos" className='navbar__item' onClick={() => {setExibeNavbar(false)}}>
                             Evento
                         </Link>
                     </>
                 )
                 : userData.nome && userData.role === "Aluno" ?  (
 
-                    <Link to="/eventos-aluno" className='navbar__item'>
+                    <Link to="/eventos-aluno" className='navbar__item' onClick={() => {setExibeNavbar(false)}}>
                         Eventos Aluno
                     </Link>
                 ) : null}
