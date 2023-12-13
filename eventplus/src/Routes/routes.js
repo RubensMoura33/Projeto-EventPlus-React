@@ -10,6 +10,7 @@ import EventosAlunoPage from "../pages/EventosAlunoPage/EventosAlunoPage";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import { PrivateRoute } from "./PrivateRoute";
+import ComentariosEventoPage from "../pages/ComentariosEventoPage/ComentariosEventoPage";
 
 const routes = () => {
   return (
@@ -18,6 +19,9 @@ const routes = () => {
         <Header />
         <Routes>
           <Route element={<HomePage />} path={"/"} exact />
+
+          <Route element={<ComentariosEventoPage />} path={"/detalhes-eventos"} />
+          
 
           <Route element={<LoginPage />} path={"/login"} />
 

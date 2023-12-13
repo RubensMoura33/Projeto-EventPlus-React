@@ -1,13 +1,13 @@
 import React from 'react';
-import './NextEvent.css'
+import './PastEvents.css'
 import {dateFormatDbToView} from '../../Utils/stringFunctions'
 import { Tooltip } from 'react-tooltip';
 import { Link } from 'react-router-dom';
 
 
 
-const NextEvent = ({title, description, eventDate, idEvent, buttonLink, buttonText}) => {
-    function conectar(idEvent) {
+const PastEvent = ({title, description, eventDate, idEvent, buttonText, buttonLink}) => {
+    function visualizar(idEvent) {
         alert(`Chamar o recurso para conectar: ${idEvent}`)
     }
     return (
@@ -27,10 +27,10 @@ const NextEvent = ({title, description, eventDate, idEvent, buttonLink, buttonTe
             <p className='event-card__description'>
                {dateFormatDbToView(eventDate)} 
             </p>
-
+         {/* onClick={() => {visualizar(idEvent)}} */}
             <Link to= {buttonLink} className='event-card__connect-link' >{buttonText}</Link>
         </article>
     );
 };
 
-export default NextEvent;
+export default PastEvent;

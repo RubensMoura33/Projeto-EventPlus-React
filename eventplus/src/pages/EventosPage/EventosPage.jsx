@@ -85,6 +85,7 @@ const EventosPage = () => {
       setNomeEvento("");
       setDescricao("");
       setDataEvento("");
+      setTipoEvento([]);
   
       if (promise.status == 201) {
         theMagic(
