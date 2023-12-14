@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 
 
-const PastEvent = ({title, description, eventDate, idEvent, buttonText, buttonLink}) => {
+const PastEvent = ({title, description, eventDate, idEvent, buttonText}) => {
     function visualizar(idEvent) {
         alert(`Chamar o recurso para conectar: ${idEvent}`)
     }
@@ -28,7 +28,7 @@ const PastEvent = ({title, description, eventDate, idEvent, buttonText, buttonLi
                {dateFormatDbToView(eventDate)} 
             </p>
          {/* onClick={() => {visualizar(idEvent)}} */}
-            <Link to= {buttonLink} className='event-card__connect-link' >{buttonText}</Link>
+            <Link to= {`/detalhes-eventos/${idEvent}`} className='event-card__connect-link' >{buttonText}</Link>
         </article>
     );
 };

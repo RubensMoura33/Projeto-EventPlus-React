@@ -20,7 +20,7 @@ const routes = () => {
         <Routes>
           <Route element={<HomePage />} path={"/"} exact />
 
-          <Route element={<ComentariosEventoPage />} path={"/detalhes-eventos"} />
+          <Route element={<ComentariosEventoPage />} path={"/detalhes-eventos/:idEvento"} />
           
 
           <Route element={<LoginPage />} path={"/login"} />

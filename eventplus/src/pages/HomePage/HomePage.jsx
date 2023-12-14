@@ -111,7 +111,6 @@ const HomePage = () => {
                                         description={e.descricao}
                                         eventDate={e.dataEvento}
                                         idEvent={e.idEvento}
-                                        buttonLink = {"/detalhes-eventos"}
                                         buttonText = {"Visualizar"}
                                     />
                                     )

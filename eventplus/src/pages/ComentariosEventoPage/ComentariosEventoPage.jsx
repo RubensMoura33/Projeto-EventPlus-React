@@ -4,33 +4,44 @@ import Container from '../../components/Container/Container';
 import Title from '../../components/Title/Title';
 import "./ComentariosEventoPage.css";
 import { dateFormatDbToView } from '../../Utils/stringFunctions';
-import api from '../../Services/Service';
+import api, { eventsTypeResource } from '../../Services/Service';
 import { eventsResource } from '../../Services/Service';
 import { UserContext } from "../../context/AuthContext";
+import { useParams } from 'react-router-dom';
 
 
 
 const ComentariosEventoPage = () => {
 
+    const {idEvento} = useParams();
     // recupera os dados globais do usuário
     const { userData, setUserData } = useContext(UserContext);
-    const [evento, setEvento] = useState([]);
+    const [nomeEvento, setNomeEvento] = useState([]);
+    const [descricao, setDescricao] = useState([]);
+    const [tipoEvento, setTipoEvento] = useState([]);
+    const [data, setData] = useState([]);
 
-    //GET EVENTOS
     useEffect(() => {
-        async function loadEvent() {
-            try {
-                const retorno = await api.get(eventsResource);
-                setEvento(retorno.data);
-                console.log(retorno.data);
-            } catch (error) {
-
-                alert('erro')
-            }
-        }
+        
         loadEvent();
     }, []);
+    
+    async function loadEvent() {
+        try {
+            const retorno = await api.get(eventsResource + '/' + idEvento);
+            const getType = await api.get(`${eventsTypeResource}/${retorno.data.idTipoEvento}`)
+            console.log(getType.data);
+            setTipoEvento (getType.data.titulo)
 
+            setNomeEvento(retorno.data.nomeEvento);
+            setDescricao(retorno.data.descricao);
+            setData(dateFormatDbToView(retorno.data.dataEvento) );
+            console.log(retorno.data);
+        } catch (error) {
+
+            alert('erro')
+        }
+    }
     return (
         <MainContent>
             <Container>
@@ -56,27 +67,26 @@ const ComentariosEventoPage = () => {
                     </thead>
 
                     <tbody>
-                        {evento.map((e) => {
-                            return (
+                            
                                 <tr className="table-data__head-row">
                                     <td className="table-data__data table-data__data--big">
-                                        {e.nomeEvento}
+                                        {nomeEvento}
                                     </td>
 
                                     <td className="table-data__data table-data__data--big">
-                                        {e.descricao}
+                                        {descricao}
                                     </td>
 
                                     <td className="table-data__data table-data__data--big">
-                                        {e.tiposEvento.titulo}
+                                        {tipoEvento}
                                     </td>
 
                                     <td className="table-data__data table-data__data--big">
-                                        {dateFormatDbToView(e.dataEvento)}
+                                        {data}
                                     </td>
                                 </tr>
-                            );
-                        })}
+                            
+                        
                     </tbody>
                 </table>
 
