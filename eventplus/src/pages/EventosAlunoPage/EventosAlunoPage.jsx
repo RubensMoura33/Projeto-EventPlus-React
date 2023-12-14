@@ -286,6 +286,7 @@ const EventosAlunoPage = () => {
       {/* <Header exibeNavbar={exibeNavbar} setExibeNavbar={setExibeNavbar} /> */}
       {<Notification {...notifyUser} setNotifyUser={setNotifyUser} />}
       <MainContent>
+        <section className="lista-eventos-aluno-section">
         <Container>
           <Title titleText={"Eventos"} className="custom-title" />
 
@@ -304,6 +305,7 @@ const EventosAlunoPage = () => {
             fnShowModal={showHideModal}
           />
         </Container>
+        </section>
       </MainContent>
 
       {/* SPINNER -Feito com position */}

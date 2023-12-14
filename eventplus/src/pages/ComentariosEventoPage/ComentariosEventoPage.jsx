@@ -8,8 +8,7 @@ import api, { eventsTypeResource } from '../../Services/Service';
 import { eventsResource } from '../../Services/Service';
 import { UserContext } from "../../context/AuthContext";
 import { useParams } from 'react-router-dom';
-
-
+import TableCE from './TableCE/TableCE';
 
 const ComentariosEventoPage = () => {
 
@@ -44,23 +43,24 @@ const ComentariosEventoPage = () => {
     }
     return (
         <MainContent>
+            <section className='info-evento-section'>
             <Container>
-                <Title titleText={"Comentarios do Evento"} className="custom-title" />
+                <Title titleText={"Detalhes do Evento"} className="custom-title" />
 
-                <table className="table-data">
-                    <thead className="table-data__head">
+                <table className="tabl-data">
+                    <thead className="tabl-data__head">
 
-                        <tr className="table-data__head-row">
-                            <th className="table-data__head-title table-data__head-title--big">
+                        <tr className="tabl-data__head-row">
+                            <th className="tabl-data__head-title tabl-data__head-title--big">
                                 Evento
                             </th>
-                            <th className="table-data__head-title table-data__head-title--big">
+                            <th className="tabl-data__head-title tabl-data__head-title--big">
                                 Descrição
                             </th>
-                            <th className="table-data__head-title table-data__head-title--big">
+                            <th className="tabl-data__head-title tabl-data__head-title--big">
                                 Tipo Evento
                             </th>
-                            <th className="table-data__head-title table-data__head-title--big">
+                            <th className="tabl-data__head-title tabl-data__head-title--big">
                                 Data
                             </th>
                         </tr>
@@ -68,20 +68,20 @@ const ComentariosEventoPage = () => {
 
                     <tbody>
                             
-                                <tr className="table-data__head-row">
-                                    <td className="table-data__data table-data__data--big">
+                                <tr className="tabl-data__head-row">
+                                    <td className="tabl-data__data tabl-data__data--big">
                                         {nomeEvento}
                                     </td>
 
-                                    <td className="table-data__data table-data__data--big">
+                                    <td className="tabl-data__data tabl-data__data--big">
                                         {descricao}
                                     </td>
 
-                                    <td className="table-data__data table-data__data--big">
+                                    <td className="tabl-data__data tabl-data__data--big">
                                         {tipoEvento}
                                     </td>
 
-                                    <td className="table-data__data table-data__data--big">
+                                    <td className="tabl-data__data tabl-data__data--big">
                                         {data}
                                     </td>
                                 </tr>
@@ -89,13 +89,15 @@ const ComentariosEventoPage = () => {
                         
                     </tbody>
                 </table>
-
-                {/* <Table
-            dados={eventos}
-            fnConnect={handleConnect}
-            fnShowModal={showHideModal}
-          /> */}
-            </Container>
+     </Container>
+     </section>
+            <section className="lista-eventos-section">
+          <Container>
+            <TableCE
+              id = {idEvento}
+            />
+          </Container>
+        </section>
         </MainContent>
     );
 };

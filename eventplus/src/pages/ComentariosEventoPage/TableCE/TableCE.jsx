@@ -2,56 +2,64 @@ import React from 'react';
 import MainContent from '../../../components/Main/MainContent';
 import Container from '../../../components/Container/Container';
 import Title from '../../../components/Title/Title';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import api,{ commentaryEvent } from '../../../Services/Service';
+import "./TableCE.css"
 
-const TableCE = () => {
-useEffect
+const TableCE = ({id}) => {
+
+const [comentario , setComentario] = useState ([]);
+
+useEffect (() => {
+    
+    loadCommentary();
+}, [])
+
+async function loadCommentary (){
+    try {
+        const retorno = await api.get(`${commentaryEvent}?id=${id}`)
+        console.log(retorno.data);
+        setComentario(retorno.data)
+    } catch (error) {
+        alert('erro')
+    }
+}
     
     return (
     <MainContent>
             <Container>
-                <Title titleText={"Comentarios do Evento"} className="custom-title" />
+                <Title titleText={"Comentarios do Evento"} color='white' />
 
-                <table className="table-data">
-                    <thead className="table-data__head">
+                <table className="tble-data"  >
+                    <thead className="tble-data__head">
 
-                        <tr className="table-data__head-row">
-                            <th className="table-data__head-title table-data__head-title--big">
-                                Evento
+                        <tr className="tble-data__head-row">
+                            <th className="tble-data__head-title tble-data__head-title--big">
+                                Nome do usuario
                             </th>
-                            <th className="table-data__head-title table-data__head-title--big">
+                            <th className="tble-data__head-title tble-data__head-title--big">
                                 Descrição
-                            </th>
-                            <th className="table-data__head-title table-data__head-title--big">
-                                Tipo Evento
-                            </th>
-                            <th className="table-data__head-title table-data__head-title--big">
-                                Data
                             </th>
                         </tr>
                     </thead>
 
                     <tbody>
-                            
-                                <tr className="table-data__head-row">
-                                    <td className="table-data__data table-data__data--big">
-                                        {nomeEvento}
+                    {comentario.map((e) => {
+                                return(
+                                <tr className="tble-data__head-row">
+                                    <td className="tble-data__data tble-data__data--big">
+                                        {e.usuario.nome}
                                     </td>
 
-                                    <td className="table-data__data table-data__data--big">
-                                        {descricao}
+                                    <td className="tble-data__data tble-data__data--big">
+                                        {e.descricao}
                                     </td>
 
-                                    <td className="table-data__data table-data__data--big">
-                                        {tipoEvento}
-                                    </td>
 
-                                    <td className="table-data__data table-data__data--big">
-                                        {data}
-                                    </td>
                                 </tr>
                             
-                        
+                        )
+                            })}
                     </tbody>
                 </table>
 

@@ -30,6 +30,10 @@ export const presencesEventsResource = '/PresencasEvento'
  * Rota para o recurso listar Minhas presencas
  */
 export const commentaryEventIdResource = '/ComentariosEvento/BuscarPorId'
+/**
+ * Rota para o recurso listar Minhas presencas
+ */
+export const commentaryEvent = '/ComentariosEvento/ListarSomenteExibe'
 
 /**
  * Rota para o recurso listar Minhas presencas
