@@ -17,8 +17,11 @@
   /* Tootip */
 
   .info-evento-section, .lista-eventos-section{
-    padding: 50px 0;
- }
+    padding: 50px 0; }
+    
+    .info-evento-section{
+      height: 400px;
+    }
   
   .custom-tootip {
     color: #B51D44 !important;

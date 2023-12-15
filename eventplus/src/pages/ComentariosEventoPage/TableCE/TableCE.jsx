@@ -2,13 +2,17 @@ import React from 'react';
 import MainContent from '../../../components/Main/MainContent';
 import Container from '../../../components/Container/Container';
 import Title from '../../../components/Title/Title';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
+import { UserContext } from '../../../context/AuthContext';
 import api,{ commentaryEvent } from '../../../Services/Service';
 import "./TableCE.css"
 
 const TableCE = ({id}) => {
 
 const [comentario , setComentario] = useState ([]);
+
+//pegando dados do usuario
+const {userData} = useContext(UserContext);
 
 useEffect (() => {
     

@@ -15,8 +15,8 @@ const ComentariosEventoPage = () => {
     const {idEvento} = useParams();
     // recupera os dados globais do usuário
     const { userData, setUserData } = useContext(UserContext);
-    const [nomeEvento, setNomeEvento] = useState([]);
-    const [descricao, setDescricao] = useState([]);
+
+    const [evento, setEvento] = useState([]);
     const [tipoEvento, setTipoEvento] = useState([]);
     const [data, setData] = useState([]);
 
@@ -31,9 +31,7 @@ const ComentariosEventoPage = () => {
             const getType = await api.get(`${eventsTypeResource}/${retorno.data.idTipoEvento}`)
             console.log(getType.data);
             setTipoEvento (getType.data.titulo)
-
-            setNomeEvento(retorno.data.nomeEvento);
-            setDescricao(retorno.data.descricao);
+            setEvento(retorno.data)
             setData(dateFormatDbToView(retorno.data.dataEvento) );
             console.log(retorno.data);
         } catch (error) {
@@ -70,11 +68,11 @@ const ComentariosEventoPage = () => {
                             
                                 <tr className="tabl-data__head-row">
                                     <td className="tabl-data__data tabl-data__data--big">
-                                        {nomeEvento}
+                                        {evento.nomeEvento}
                                     </td>
 
                                     <td className="tabl-data__data tabl-data__data--big">
-                                        {descricao}
+                                        {evento.descricao}
                                     </td>
 
                                     <td className="tabl-data__data tabl-data__data--big">
@@ -89,14 +87,17 @@ const ComentariosEventoPage = () => {
                         
                     </tbody>
                 </table>
+
+
+                
      </Container>
      </section>
             <section className="lista-eventos-section">
-          <Container>
+          
             <TableCE
               id = {idEvento}
             />
-          </Container>
+          
         </section>
         </MainContent>
     );
